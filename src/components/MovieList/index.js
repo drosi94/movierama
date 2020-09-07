@@ -21,6 +21,7 @@ class MovieList extends CustomComponent {
     this.$moviesContainer = undefined;
     this.$loaderContainer = undefined;
     this._searchChangeEvent = new EventEmitter();
+    this._movieExpandChangeEvent = new EventEmitter();
     this._page = 1;
     this._keyword = '';
     this._mode = MOVIE_LIST_MODE.LATEST;
@@ -158,6 +159,24 @@ class MovieList extends CustomComponent {
         }
       }
     }
+
+    this._movieExpandChangeEvent.on('movieexpandchange', (e) => {
+      if (!e.detail.expanded) {
+        const currentScrollTop = this.$moviesContainer.scrollTop;
+        const infoHeight = 300;
+        const infoExpandedHeight = window.innerWidth > 1080 ? 1000 : 1500;
+        const averageHeight = (infoHeight + infoExpandedHeight) / 2;
+        const diff =
+          currentScrollTop -
+          averageHeight * Math.floor(currentScrollTop / averageHeight);
+        console.log(diff);
+        if (diff > 0) {
+          setTimeout(() => {
+            this.$moviesContainer.scrollTop -= diff;
+          }, 600);
+        }
+      }
+    });
   }
 
   _appendMovieItemsInList(movies) {

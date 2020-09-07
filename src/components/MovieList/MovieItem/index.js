@@ -3,6 +3,7 @@ import noImage from '../../../../public/img/no-image.png';
 
 const tagName = 'movierama-movie-item';
 import template from './template.html';
+import { EventEmitter } from '../../../utilities/EventEmitter';
 
 class MovieItem extends CustomComponent {
   constructor() {
@@ -18,6 +19,7 @@ class MovieItem extends CustomComponent {
     this.$movieVideoContainer = undefined;
     this.$movieReviewListContainer = undefined;
     this.$movieSimilarListContainer = undefined;
+    this._movieExpandChangeEvent = new EventEmitter();
   }
 
   connectedCallback() {
@@ -101,9 +103,15 @@ class MovieItem extends CustomComponent {
           'movierama-movie-similar-list',
           this.$movieSimilarListContainer
         );
+        this._movieExpandChangeEvent.emit('movieexpandchange', {
+          expanded: true,
+        });
       } else {
         this.removeAttribute('data-expanded');
         clearElements();
+        this._movieExpandChangeEvent.emit('movieexpandchange', {
+          expanded: false,
+        });
       }
     };
     this.$movieContainer.addEventListener('click', toggleExpand);

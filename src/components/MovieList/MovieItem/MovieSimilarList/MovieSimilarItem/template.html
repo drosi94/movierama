@@ -4,8 +4,17 @@
   }
   .movie-similar-container {
     padding: 2rem;
-    width: 300px;
+    width: 320px;
     text-align: center;
+  }
+
+  .movie-title h5 {
+    display: inline-block;
+    margin-right: 0.5rem;
+  }
+
+  .movie-title i:hover {
+    opacity: 0.7;
   }
 
   .movie-similar-container img {
@@ -15,6 +24,14 @@
 </style>
 
 <div class="movie-similar-container">
-  <h5 id="movieSimilarTitle"></h5>
+  <div class="movie-title">
+    <h5 id="movieSimilarTitle"></h5>
+    <i
+      id="movieSimilarLink"
+      class="fas fa-link"
+      tabindex="0"
+      aria-label="Click to see movie details"
+    ></i>
+  </div>
   <img id="movieSimilarPoster" src="https://image.tmdb.org/t/p/w185/" />
 </div>

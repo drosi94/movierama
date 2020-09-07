@@ -9,16 +9,17 @@ class MovieSimilarList extends CustomComponent {
   constructor() {
     super(template);
     this._service = new MoviesService();
-
     this.$movieSimilarsContainer = undefined;
   }
 
   async connectedCallback() {
     super.connectedCallback();
+
     if (this.isConnected) {
       this.$movieSimilarsContainer = this.shadowDocument.querySelector(
         '#movieSimilarsContainer'
       );
+
       const movieId = this.getAttribute('data-movie-id');
       const movieSimilars = await this._service.fetchMovieSimilars(movieId);
       if (movieSimilars.length > 0) {

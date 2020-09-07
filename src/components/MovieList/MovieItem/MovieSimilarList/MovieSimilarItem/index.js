@@ -1,4 +1,6 @@
 import { CustomComponent } from '../../../../../utilities/CustomComponent';
+import { EventEmitter } from '../../../../../utilities/EventEmitter';
+
 import noImage from '../../../../../../public/img/no-image.png';
 
 import template from './template.html';
@@ -10,6 +12,8 @@ class MovieSimilarItem extends CustomComponent {
     super(template);
     this.$movieSimilarTitle = undefined;
     this.$movieSimilarPoster = undefined;
+    this.$movieSimilarLink = undefined;
+    this._searchChangeEvent = new EventEmitter();
   }
 
   connectedCallback() {
@@ -21,6 +25,9 @@ class MovieSimilarItem extends CustomComponent {
       this.$movieSimilarPoster = this.shadowDocument.querySelector(
         '#movieSimilarPoster'
       );
+      this.$movieSimilarLink = this.shadowDocument.querySelector(
+        '#movieSimilarLink'
+      );
       this.$movieSimilarTitle.innerHTML = this.getAttribute('data-title');
       this.$movieSimilarPoster.alt = this.getAttribute('data-title');
       const posterPath = this.getAttribute('data-poster-path');
@@ -29,6 +36,18 @@ class MovieSimilarItem extends CustomComponent {
       } else {
         this.$movieSimilarPoster.src = noImage;
       }
+      const onMovieSimilarClick = (e) => {
+        e.stopPropagation();
+        this._searchChangeEvent.emit('searchchange', {
+          value: this.getAttribute('data-title'),
+        });
+      };
+      this.$movieSimilarLink.addEventListener('click', onMovieSimilarClick);
+      this.$movieSimilarLink.addEventListener('keypress', (e) => {
+        if (e.keyCode === 13) {
+          onMovieSimilarClick();
+        }
+      });
     }
   }
 }

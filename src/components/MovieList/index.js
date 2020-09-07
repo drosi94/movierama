@@ -1,5 +1,6 @@
 import { CustomComponent } from '../../utilities/CustomComponent';
 import { throttle, debounce } from '../../utilities/Utils';
+import { EventEmitter } from '../../utilities/EventEmitter';
 import { MoviesService } from '../../services/MoviesService';
 
 const tagName = 'movierama-movie-list';
@@ -19,6 +20,7 @@ class MovieList extends CustomComponent {
     this.$searchClearButton = undefined;
     this.$moviesContainer = undefined;
     this.$loaderContainer = undefined;
+    this._searchChangeEvent = new EventEmitter();
     this._page = 1;
     this._keyword = '';
     this._mode = MOVIE_LIST_MODE.LATEST;
@@ -106,6 +108,12 @@ class MovieList extends CustomComponent {
     const debouncedInputListener = debounce(onInputListener, 500);
     this.$searchInput.addEventListener('input', (e) => {
       debouncedInputListener(e.target.value);
+    });
+    this._searchChangeEvent.on('searchchange', (e) => {
+      this.$searchInput.placeholder = '';
+      this.$searchContainer.classList.add('active');
+      this.$searchInput.value = e.detail.value;
+      onInputListener(e.detail.value);
     });
     this.$searchClearButton.addEventListener('click', () => {
       this.$searchInput.value = '';

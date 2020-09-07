@@ -70,7 +70,9 @@ module.exports = {
       root: '/dist',
       verbose: true,
     }),
-    new Dotenv(),
+    new Dotenv({
+      systemvars: true,
+    }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
@@ -95,10 +97,12 @@ module.exports = {
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
       skipWaiting: true,
-      runtimeCaching: [{
-        urlPattern: new RegExp('https://api.themoviedb.org/3.'),
-        handler: 'StaleWhileRevalidate'
-      }]
+      runtimeCaching: [
+        {
+          urlPattern: new RegExp('https://api.themoviedb.org/3.'),
+          handler: 'StaleWhileRevalidate',
+        },
+      ],
     }),
   ],
   node: {

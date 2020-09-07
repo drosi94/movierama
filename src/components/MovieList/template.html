@@ -9,6 +9,16 @@
     text-align: center;
   }
 
+  .hidden-label {
+    left: -999px;
+    position: absolute;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    z-index: -999;
+  }
+
   .search {
     width: 4rem;
     height: 4rem;
@@ -61,6 +71,7 @@
 
 <div class="movie-list-container">
   <div class="search-container">
+    <label class="hidden-label" for="search" tabindex="0">Search</label>
     <input
       type="text"
       id="search"

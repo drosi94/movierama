@@ -88,7 +88,7 @@ class MovieItem extends CustomComponent {
         this.$movieSimilarListContainer.lastElementChild
       );
     };
-    this.$movieContainer.addEventListener('click', () => {
+    const toggleExpand = () => {
       this.$movieContainer.classList.toggle('expanded');
       if (!this.getAttribute('data-expanded')) {
         this.setAttribute('data-expanded', 'expanded');
@@ -104,6 +104,12 @@ class MovieItem extends CustomComponent {
       } else {
         this.removeAttribute('data-expanded');
         clearElements();
+      }
+    };
+    this.$movieContainer.addEventListener('click', toggleExpand);
+    this.$movieContainer.addEventListener('keypress', (e) => {
+      if (e.keyCode === 13) {
+        toggleExpand();
       }
     });
   }

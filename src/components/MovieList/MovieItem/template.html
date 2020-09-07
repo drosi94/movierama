@@ -1,9 +1,9 @@
 <style>
-  h3 {
+  h2 {
     font-size: 1.7rem;
   }
 
-  h4 {
+  h3 {
     font-size: 1.5rem;
     padding: 1rem;
   }
@@ -118,7 +118,12 @@
   }
 </style>
 
-<div class="movie-container" id="movie">
+<div
+  class="movie-container"
+  id="movie"
+  tabindex="0"
+  aria-label="Movie short details. Press enter to expand"
+>
   <div class="less-info">
     <img
       id="moviePoster"
@@ -126,7 +131,7 @@
       src="https://image.tmdb.org/t/p/w185"
     />
     <div class="details">
-      <h3 id="movieTitle" class="movie-title"></h3>
+      <h2 id="movieTitle" class="movie-title"></h2>
       <span id="movieVoteAverage" class="movie-vote-average">
         <i class="fas fa-star"></i>
       </span>
@@ -141,16 +146,16 @@
   </div>
   <div class="more-info">
     <div id="movieOverviewPhone" class="movie-overview-phone more-section">
-      <h4>Overview</h4>
+      <h3>Overview</h3>
     </div>
     <div id="movieVideo" class="more-section">
-      <h4>Trailer</h4>
+      <h3>Trailer</h3>
     </div>
     <div id="movieReviews" class="more-section">
-      <h4>Reviews</h4>
+      <h3>Reviews</h3>
     </div>
     <div id="movieSimilars" class="more-section">
-      <h4>Similar Movies</h4>
+      <h3>Similar Movies</h3>
     </div>
   </div>
 </div>

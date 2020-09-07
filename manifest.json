@@ -1,0 +1,21 @@
+{
+  "name": "MovieRama",
+  "short_name": "MR",
+  "lang": "en-US",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#316a6d",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icons/favicon-196x196.png",
+      "type": "image/png",
+      "sizes": "196x196"
+    },
+    {
+      "src": "/icons/icons.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

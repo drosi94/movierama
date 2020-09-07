@@ -7,9 +7,13 @@
     "dev": "webpack-dev-server --mode development --open",
     "build": "webpack --mode development",
     "build:prod": "webpack --mode production",
-    "start": "npm run dev"
+    "start:dev": "npm run dev",
+    "dist": " http-server dist -S -C ./node_modules/webpack-dev-server/ssl/server.pem -K ./node_modules/webpack-dev-server/ssl/server.pem",
+    "start": "node server.js",
+    "heroku-postbuild": "webpack -p",
+    "start:prod": "npm run build:prod && npm run dist"
   },
-  "author": "",
+  "author": "vdrosatos",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.11.6",
@@ -17,14 +21,23 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/runtime": "^7.11.2",
     "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^6.1.0",
     "css-loader": "^4.2.2",
     "dotenv": "^8.2.0",
     "dotenv-webpack": "^2.0.0",
     "file-loader": "^6.1.0",
     "html-loader": "^1.3.0",
+    "html-webpack-plugin": "^4.4.1",
+    "http-server": "^0.12.3",
+    "mini-css-extract-plugin": "^0.11.0",
     "style-loader": "^1.2.1",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "workbox-webpack-plugin": "^5.1.3"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }

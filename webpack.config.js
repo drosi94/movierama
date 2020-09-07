@@ -1,13 +1,18 @@
-const Dotenv = require('dotenv-webpack');
-
 const path = require('path');
 
+const Dotenv = require('dotenv-webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
+
 module.exports = {
-  entry: ['./src/index.js'],
+  entry: ['./src/index.js', './public/css/main.css'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: 'bundle.js',
+    filename: 'movierama.bundle.js',
   },
   module: {
     rules: [
@@ -29,7 +34,10 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: 'style-loader',
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '/public/css',
+            },
           },
           {
             loader: 'css-loader',
@@ -54,7 +62,45 @@ module.exports = {
       },
     ],
   },
-  plugins: [new Dotenv()],
+  devServer: {
+    https: true,
+  },
+  plugins: [
+    new CleanWebpackPlugin({
+      root: '/dist',
+      verbose: true,
+    }),
+    new Dotenv(),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+    }),
+    new HtmlWebpackPlugin({
+      template: './index.html',
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'public/icons',
+          to: 'icons',
+        },
+        {
+          from: 'manifest.json',
+          to: 'manifest.json',
+        },
+      ],
+    }),
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true,
+      runtimeCaching: [{
+        urlPattern: new RegExp('https://api.themoviedb.org/3.'),
+        handler: 'StaleWhileRevalidate'
+      }]
+    }),
+  ],
   node: {
     fs: 'empty',
   },

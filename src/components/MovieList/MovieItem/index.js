@@ -56,6 +56,7 @@ class MovieItem extends CustomComponent {
       } else {
         this.$moviePoster.src = noImage;
       }
+      this.$moviePoster.alt = this.getAttribute('data-title');
       this.$movieVoteAverage.innerHTML += this.getAttribute('data-vote');
       this.$movieYearRelease.innerHTML += this.getAttribute(
         'data-release-date'

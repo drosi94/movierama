@@ -82,7 +82,6 @@ class MovieList extends CustomComponent {
       this.$moviesContainer = newMoviesContainer;
 
       this._page = 1;
-      console.log(value);
       if (!value || value.trim().length === 0) {
         this._keyword = '';
         this._mode = MOVIE_LIST_MODE.LATEST;

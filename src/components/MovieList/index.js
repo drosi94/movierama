@@ -119,6 +119,7 @@ class MovieList extends CustomComponent {
     this.$searchClearButton.addEventListener('click', () => {
       this.$searchInput.value = '';
       this.$searchContainer.classList.remove('active');
+      this.$searchInput.placeholder = placeholder;
       if (this._mode === MOVIE_LIST_MODE.SEARCH) {
         onInputListener('');
       }

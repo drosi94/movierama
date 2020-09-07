@@ -14,7 +14,9 @@ class MovieList extends CustomComponent {
   constructor() {
     super(template);
     this._service = new MoviesService();
+    this.$searchContainer = undefined;
     this.$searchInput = undefined;
+    this.$searchClearButton = undefined;
     this.$moviesContainer = undefined;
     this.$loaderContainer = undefined;
     this._page = 1;
@@ -26,7 +28,14 @@ class MovieList extends CustomComponent {
     super.connectedCallback();
     if (this.isConnected) {
       await this._service.initData();
+      this.$searchContainer = this.shadowDocument.querySelector(
+        '#searchContainer'
+      );
       this.$searchInput = this.shadowDocument.querySelector('#search');
+      this.$searchClearButton = this.shadowDocument.querySelector(
+        '#searchClear'
+      );
+
       this.$moviesContainer = this.shadowDocument.querySelector(
         '#moviesContainer'
       );
@@ -61,7 +70,7 @@ class MovieList extends CustomComponent {
     const placeholder = this.$searchInput.placeholder;
     this.$searchInput.addEventListener('focus', () => {
       this.$searchInput.placeholder = '';
-      this.$searchInput.classList.add('active');
+      this.$searchContainer.classList.add('active');
     });
     this.$searchInput.addEventListener('blur', () => {
       this.$searchInput.placeholder = placeholder;
@@ -69,7 +78,7 @@ class MovieList extends CustomComponent {
         !this.$searchInput.value ||
         this.$searchInput.value.trim().length === 0
       ) {
-        this.$searchInput.classList.remove('active');
+        this.$searchContainer.classList.remove('active');
       }
     });
     const onInputListener = async (value) => {
@@ -97,6 +106,13 @@ class MovieList extends CustomComponent {
     const debouncedInputListener = debounce(onInputListener, 500);
     this.$searchInput.addEventListener('input', (e) => {
       debouncedInputListener(e.target.value);
+    });
+    this.$searchClearButton.addEventListener('click', () => {
+      this.$searchInput.value = '';
+      this.$searchContainer.classList.remove('active');
+      if (this._mode === MOVIE_LIST_MODE.SEARCH) {
+        onInputListener('');
+      }
     });
   }
 

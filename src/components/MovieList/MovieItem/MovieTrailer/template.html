@@ -1,0 +1,31 @@
+<style>
+  .movie-trailer-container {
+    padding: 2rem;
+  }
+
+  .movie-trailer-container iframe {
+    width: 200px;
+    height: 285px;
+  }
+
+  @media screen and (min-width: 370px) {
+    .movie-trailer-container iframe {
+      width: 300px;
+    }
+  }
+
+  @media screen and (min-width: 720px) {
+    .movie-trailer-container iframe {
+      width: 500px;
+    }
+  }
+</style>
+
+<div id="movieTrailerContainer" class="movie-trailer-container">
+  <iframe
+    id="movieTrailerFrame"
+    frameborder="0"
+    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  ></iframe>
+</div>

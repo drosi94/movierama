@@ -8,15 +8,15 @@ export class CustomComponent extends HTMLElement {
     this.template = template;
     // Create shadowRoot to scoped the styles
     this.shadowDocument = this.attachShadow({ mode: 'open' });
-    // Little hack to copy main css anf fontawesome styles into shadow doms.
+    // Little hack to copy main css and fontawesome styles into shadow doms.
     const head = document.createElement('head');
-    const fontawesomeStyles = document.querySelectorAll(
+    const stylesheets = document.querySelectorAll(
       'link[rel="stylesheet"]'
     );
-    fontawesomeStyles.forEach((fontawesomeStyle) => {
-      head.appendChild(fontawesomeStyle.cloneNode());
+    stylesheets.forEach((stylesheet) => {
+      head.appendChild(stylesheet.cloneNode());
     });
-    if (fontawesomeStyles) {
+    if (stylesheets) {
       this.shadowDocument.appendChild(head);
     }
   }

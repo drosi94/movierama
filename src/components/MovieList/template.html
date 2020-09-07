@@ -4,12 +4,21 @@
     height: 75vh;
   }
 
+  .search-area {
+    display: flex;
+    justify-content: center;
+  }
+
   .search-container {
     margin: 1rem;
     text-align: center;
+    position: relative;
+    width: 4rem;
+    height: 4rem;
+    align-self: center;
   }
 
-  .hidden-label {
+  .search-container .hidden-label {
     left: -999px;
     position: absolute;
     top: auto;
@@ -19,18 +28,37 @@
     z-index: -999;
   }
 
-  .search {
-    width: 4rem;
-    height: 4rem;
-    transition: width 0.4s ease-in-out;
+  .search-container .search {
     font-family: FontAwesome;
     font-size: 3rem;
+    width: 4rem;
+    transition: width 0.4s ease-in-out;
   }
 
-  .search.active {
+  .search-container.active,
+  .search-container.active .search {
     width: 28rem;
+  }
+
+  .search-container.active .search {
     font-family: unset;
     font-size: 2.4rem;
+  }
+
+  .search-container .search-clear {
+    display: none;
+    position: absolute;
+    bottom: 1.2rem;
+    right: 0.5rem;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    color: #f32013;
+  }
+
+  .search-container.active .search-clear {
+    display: block;
   }
 
   .movies {
@@ -70,15 +98,20 @@
 </style>
 
 <div class="movie-list-container">
-  <div class="search-container">
-    <label class="hidden-label" for="search" tabindex="0">Search</label>
-    <input
-      type="text"
-      id="search"
-      class="search"
-      name="search"
-      placeholder="&#xF002;"
-    />
+  <div class="search-area">
+    <div id="searchContainer" class="search-container">
+      <label class="hidden-label" for="search" tabindex="0">Search</label>
+      <input
+        type="text"
+        id="search"
+        class="search"
+        name="search"
+        placeholder="&#xF002;"
+      />
+      <button id="searchClear" class="search-clear">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
   </div>
   <div id="loaderContainer">
     <div class="loader"></div>

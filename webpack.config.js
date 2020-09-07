@@ -102,6 +102,10 @@ module.exports = {
           urlPattern: new RegExp('https://api.themoviedb.org/3.'),
           handler: 'StaleWhileRevalidate',
         },
+        {
+          urlPattern: new RegExp('https://kit.fontawesome.com.'),
+          handler: 'StaleWhileRevalidate',
+        },
       ],
     }),
   ],

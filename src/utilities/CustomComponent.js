@@ -1,3 +1,4 @@
+let instance = null;
 export class CustomComponent extends HTMLElement {
   /**
    * Creates a new CustomComponent object to be used as an element in HTML.
@@ -5,18 +6,16 @@ export class CustomComponent extends HTMLElement {
    */
   constructor(template) {
     super();
-    this.template = template;
+    this._template = template;
     // Create shadowRoot to scoped the styles
     this.shadowDocument = this.attachShadow({ mode: 'open' });
-    // Little hack to copy main css anf fontawesome styles into shadow doms.
+    // Little hack to copy main css and fontawesome styles into shadow doms.
     const head = document.createElement('head');
-    const fontawesomeStyles = document.querySelectorAll(
-      'link[rel="stylesheet"]'
-    );
-    fontawesomeStyles.forEach((fontawesomeStyle) => {
-      head.appendChild(fontawesomeStyle.cloneNode());
+    const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
+    stylesheets.forEach((stylesheet) => {
+      head.appendChild(stylesheet.cloneNode());
     });
-    if (fontawesomeStyles) {
+    if (stylesheets) {
       this.shadowDocument.appendChild(head);
     }
   }
@@ -28,8 +27,11 @@ export class CustomComponent extends HTMLElement {
     // Check if node is connected (https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)
     if (this.isConnected) {
       const templateElement = document.createElement('template');
-      templateElement.innerHTML = this.template;
+      templateElement.innerHTML = this._template ? this._template : '';
+      console.log(templateElement.innerHTML);
       this.shadowDocument.appendChild(templateElement.content.cloneNode(true));
     }
   }
 }
+
+customElements.define('custom-component', CustomComponent);

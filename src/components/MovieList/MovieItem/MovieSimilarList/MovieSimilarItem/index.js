@@ -36,14 +36,17 @@ class MovieSimilarItem extends CustomComponent {
       } else {
         this.$movieSimilarPoster.src = noImage;
       }
-      const onMovieSimilarClick = (e) => {
-        e.stopPropagation();
+      const onMovieSimilarClick = () => {
         this._searchChangeEvent.emit('searchchange', {
           value: this.getAttribute('data-title'),
         });
       };
-      this.$movieSimilarLink.addEventListener('click', onMovieSimilarClick);
+      this.$movieSimilarLink.addEventListener('click', (e) => {
+        e.stopPropagation();
+        onMovieSimilarClick();
+      });
       this.$movieSimilarLink.addEventListener('keypress', (e) => {
+        e.stopPropagation();
         if (e.keyCode === 13) {
           onMovieSimilarClick();
         }

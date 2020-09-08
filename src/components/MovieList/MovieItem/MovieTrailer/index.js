@@ -16,7 +16,7 @@ class MovieTrailer extends CustomComponent {
   async connectedCallback() {
     super.connectedCallback();
     if (this.isConnected) {
-      this.$movieTrailerContainer = this.shadowDocument.querySelector(
+      this.$movieTrailerContainer = this.shadowRoot.querySelector(
         '#movieTrailerContainer'
       );
       const movieId = this.getAttribute('data-movie-id');

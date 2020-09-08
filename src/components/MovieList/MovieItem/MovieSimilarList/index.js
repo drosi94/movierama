@@ -16,7 +16,7 @@ class MovieSimilarList extends CustomComponent {
     super.connectedCallback();
 
     if (this.isConnected) {
-      this.$movieSimilarsContainer = this.shadowDocument.querySelector(
+      this.$movieSimilarsContainer = this.shadowRoot.querySelector(
         '#movieSimilarsContainer'
       );
 

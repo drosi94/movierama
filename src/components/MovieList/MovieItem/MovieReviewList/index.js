@@ -16,7 +16,7 @@ class MovieReviewList extends CustomComponent {
   async connectedCallback() {
     super.connectedCallback();
     if (this.isConnected) {
-      this.$movieReviewsContainer = this.shadowDocument.querySelector(
+      this.$movieReviewsContainer = this.shadowRoot.querySelector(
         '#movieReviewsContainer'
       );
       const movieId = this.getAttribute('data-movie-id');

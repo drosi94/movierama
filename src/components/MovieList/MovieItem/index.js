@@ -26,27 +26,27 @@ class MovieItem extends CustomComponent {
     super.connectedCallback();
     if (this.isConnected) {
       // initialize element variables
-      this.$movieContainer = this.shadowDocument.querySelector('#movie');
-      this.$movieTitle = this.shadowDocument.querySelector('#movieTitle');
-      this.$moviePoster = this.shadowDocument.querySelector('#moviePoster');
-      this.$movieVoteAverage = this.shadowDocument.querySelector(
+      this.$movieContainer = this.shadowRoot.querySelector('#movie');
+      this.$movieTitle = this.shadowRoot.querySelector('#movieTitle');
+      this.$moviePoster = this.shadowRoot.querySelector('#moviePoster');
+      this.$movieVoteAverage = this.shadowRoot.querySelector(
         '#movieVoteAverage'
       );
-      this.$movieYearRelease = this.shadowDocument.querySelector(
+      this.$movieYearRelease = this.shadowRoot.querySelector(
         '#movieYearRelease'
       );
-      this.$movieGenres = this.shadowDocument.querySelector('#movieGenres');
-      this.$movieOverview = this.shadowDocument.querySelector('#movieOverview');
-      this.$movieOverviewPhone = this.shadowDocument.querySelector(
+      this.$movieGenres = this.shadowRoot.querySelector('#movieGenres');
+      this.$movieOverview = this.shadowRoot.querySelector('#movieOverview');
+      this.$movieOverviewPhone = this.shadowRoot.querySelector(
         '#movieOverviewPhone'
       );
-      this.$movieVideoContainer = this.shadowDocument.querySelector(
+      this.$movieVideoContainer = this.shadowRoot.querySelector(
         '#movieVideo'
       );
-      this.$movieReviewListContainer = this.shadowDocument.querySelector(
+      this.$movieReviewListContainer = this.shadowRoot.querySelector(
         '#movieReviews'
       );
-      this.$movieSimilarListContainer = this.shadowDocument.querySelector(
+      this.$movieSimilarListContainer = this.shadowRoot.querySelector(
         '#movieSimilars'
       );
 

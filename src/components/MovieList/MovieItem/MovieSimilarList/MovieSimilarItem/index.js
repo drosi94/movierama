@@ -19,13 +19,13 @@ class MovieSimilarItem extends CustomComponent {
   connectedCallback() {
     super.connectedCallback();
     if (this.isConnected) {
-      this.$movieSimilarTitle = this.shadowDocument.querySelector(
+      this.$movieSimilarTitle = this.shadowRoot.querySelector(
         '#movieSimilarTitle'
       );
-      this.$movieSimilarPoster = this.shadowDocument.querySelector(
+      this.$movieSimilarPoster = this.shadowRoot.querySelector(
         '#movieSimilarPoster'
       );
-      this.$movieSimilarLink = this.shadowDocument.querySelector(
+      this.$movieSimilarLink = this.shadowRoot.querySelector(
         '#movieSimilarLink'
       );
       this.$movieSimilarTitle.innerHTML = this.getAttribute('data-title');

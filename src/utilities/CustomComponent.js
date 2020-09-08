@@ -7,16 +7,18 @@ export class CustomComponent extends HTMLElement {
   constructor(template) {
     super();
     this._template = template;
-    // Create shadowRoot to scoped the styles
-    this.shadowDocument = this.attachShadow({ mode: 'open' });
-    // Little hack to copy main css and fontawesome styles into shadow doms.
+
+    // Create shadowRoot to scope the styles
+    this.attachShadow({ mode: 'open' });
+
+    // Little hack to copy stylesheets into shadow doms.
     const head = document.createElement('head');
     const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
     stylesheets.forEach((stylesheet) => {
       head.appendChild(stylesheet.cloneNode());
     });
     if (stylesheets) {
-      this.shadowDocument.appendChild(head);
+      this.shadowRoot.appendChild(head);
     }
   }
 
@@ -29,7 +31,7 @@ export class CustomComponent extends HTMLElement {
       const templateElement = document.createElement('template');
       templateElement.innerHTML = this._template ? this._template : '';
       console.log(templateElement.innerHTML);
-      this.shadowDocument.appendChild(templateElement.content.cloneNode(true));
+      this.shadowRoot.appendChild(templateElement.content.cloneNode(true));
     }
   }
 }

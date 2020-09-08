@@ -31,18 +31,18 @@ class MovieList extends CustomComponent {
     super.connectedCallback();
     if (this.isConnected) {
       await this._service.initData();
-      this.$searchContainer = this.shadowDocument.querySelector(
+      this.$searchContainer = this.shadowRoot.querySelector(
         '#searchContainer'
       );
-      this.$searchInput = this.shadowDocument.querySelector('#search');
-      this.$searchClearButton = this.shadowDocument.querySelector(
+      this.$searchInput = this.shadowRoot.querySelector('#search');
+      this.$searchClearButton = this.shadowRoot.querySelector(
         '#searchClear'
       );
 
-      this.$moviesContainer = this.shadowDocument.querySelector(
+      this.$moviesContainer = this.shadowRoot.querySelector(
         '#moviesContainer'
       );
-      this.$loaderContainer = this.shadowDocument.querySelector(
+      this.$loaderContainer = this.shadowRoot.querySelector(
         '#loaderContainer'
       );
       this._searchInputFunctionality();
@@ -134,10 +134,10 @@ class MovieList extends CustomComponent {
     async function onScrollListener() {
       const infoExpandedHeight = window.innerWidth > 1080 ? 1000 : 1500;
       const infoHeight = 300;
-      const movieItems = this.shadowDocument.querySelectorAll(
+      const movieItems = this.shadowRoot.querySelectorAll(
         'movierama-movie-item:not([data-expanded])'
       ).length;
-      const expandedMovieItems = this.shadowDocument.querySelectorAll(
+      const expandedMovieItems = this.shadowRoot.querySelectorAll(
         'movierama-movie-item[data-expanded]'
       ).length;
       if (

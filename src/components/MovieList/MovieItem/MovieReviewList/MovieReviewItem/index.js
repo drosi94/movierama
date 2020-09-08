@@ -13,7 +13,7 @@ class MovieReviewItem extends CustomComponent {
   connectedCallback() {
     super.connectedCallback();
     if (this.isConnected) {
-      this.$movieReviewContainer = this.shadowDocument.querySelector(
+      this.$movieReviewContainer = this.shadowRoot.querySelector(
         '#movieReviewContainer'
       );
       this.$movieReviewContainer.innerHTML = `<p>${this.getAttribute(

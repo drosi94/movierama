@@ -1,5 +1,4 @@
 import { MoviesAPICaller } from '../apiCaller/MoviesAPICaller';
-
 export class MoviesService {
   constructor() {
     this._apiCaller = new MoviesAPICaller(process.env.API_URL);

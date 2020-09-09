@@ -72,31 +72,10 @@
 
   #loaderContainer {
     display: none;
-    justify-content: center;
-    align-items: center;
-    height: 70%;
   }
 
   #loaderContainer.active {
-    display: flex;
-  }
-
-  #loaderContainer .loader {
-    border: 0.5rem solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 0.5rem solid #316a6d;
-    width: 4rem;
-    height: 4rem;
-    animation: spin 2s linear infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+    display: block;
   }
 
   @media screen and (min-width: 720px) {
@@ -123,7 +102,10 @@
     </div>
   </div>
   <div id="loaderContainer">
-    <div class="loader"></div>
+    <movierama-movie-skeleton></movierama-movie-skeleton>
+    <movierama-movie-skeleton></movierama-movie-skeleton>
   </div>
-  <div id="moviesContainer" class="movies"></div>
+  <div id="moviesContainer" class="movies">
+  
+  </div>
 </div>

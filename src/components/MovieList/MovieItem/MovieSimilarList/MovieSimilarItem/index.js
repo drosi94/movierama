@@ -1,5 +1,4 @@
-import { CustomComponent } from '../../../../../utilities/CustomComponent';
-import { EventEmitter } from '../../../../../utilities/EventEmitter';
+import { CustomComponent, EventEmitter } from '../../../../../utilities';
 
 import noImage from '../../../../../../public/img/no-image.png';
 

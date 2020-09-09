@@ -1,6 +1,5 @@
-import { CustomComponent } from '../../utilities/CustomComponent';
+import { CustomComponent, EventEmitter } from '../../utilities';
 import { throttle, debounce } from '../../utilities/Utils';
-import { EventEmitter } from '../../utilities/EventEmitter';
 import { MoviesService } from '../../services/MoviesService';
 
 const tagName = 'movierama-movie-list';
@@ -31,20 +30,12 @@ class MovieList extends CustomComponent {
     super.connectedCallback();
     if (this.isConnected) {
       await this._service.initData();
-      this.$searchContainer = this.shadowRoot.querySelector(
-        '#searchContainer'
-      );
+      this.$searchContainer = this.shadowRoot.querySelector('#searchContainer');
       this.$searchInput = this.shadowRoot.querySelector('#search');
-      this.$searchClearButton = this.shadowRoot.querySelector(
-        '#searchClear'
-      );
+      this.$searchClearButton = this.shadowRoot.querySelector('#searchClear');
 
-      this.$moviesContainer = this.shadowRoot.querySelector(
-        '#moviesContainer'
-      );
-      this.$loaderContainer = this.shadowRoot.querySelector(
-        '#loaderContainer'
-      );
+      this.$moviesContainer = this.shadowRoot.querySelector('#moviesContainer');
+      this.$loaderContainer = this.shadowRoot.querySelector('#loaderContainer');
       this._searchInputFunctionality();
       const data = await this._populateMovies();
       if (data.total_pages > this._page) {

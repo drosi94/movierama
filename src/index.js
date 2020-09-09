@@ -4,6 +4,7 @@ require('./components/App');
 require('./components/Header');
 require('./components/MovieList');
 require('./components/MovieList/MovieItem');
+require('./components/MovieList/MovieSkeleton');
 require('./components/MovieList/MovieItem/MovieTrailer');
 require('./components/MovieList/MovieItem/MovieReviewList');
 require('./components/MovieList/MovieItem/MovieReviewList/MovieReviewItem');

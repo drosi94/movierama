@@ -1,4 +1,4 @@
-import { MoviesAPICaller } from './apiCaller/MoviesAPICaller';
+import { MoviesAPICaller } from '../apiCaller/MoviesAPICaller';
 
 export class MoviesService {
   constructor() {

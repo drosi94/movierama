@@ -9,9 +9,20 @@ export class TestUtils {
    * @param {object} attributes
    * @returns {Promise<HTMLElement>}
    */
-  static render(tag, attributes = {}) {
+  static async render(tag, attributes = {}) {
     TestUtils._renderToDocument(tag, attributes);
-    return TestUtils._waitForComponentToRender(tag);
+    await customElements.whenDefined(tag);
+    await TestUtils.nextFrame();
+    console.log('--------------', document.querySelector(tag));
+    return document.querySelector(tag);
+  }
+
+  /**
+   * Resolves after requestAnimationFrame.
+   * @returns {Promise<void>} Promise that resolved after requestAnimationFrame
+   */
+  static nextFrame() {
+    return new Promise((resolve) => requestAnimationFrame(() => resolve()));
   }
 
   /**
@@ -38,25 +49,5 @@ export class TestUtils {
     return Object.entries(attributes).reduce((previous, current) => {
       return previous + ` ${current[0]}="${current[1]}"`;
     }, '');
-  }
-
-  /**
-   * Returns a promise which resolves as soon as
-   * requested element becomes available.
-   * @param {string} tag
-   * @returns {Promise<HTMLElement>}
-   */
-  static async _waitForComponentToRender(tag) {
-    return new Promise((resolve) => {
-      function requestComponent() {
-        const element = document.querySelector(tag);
-        if (element) {
-          resolve(element);
-        } else {
-          window.requestAnimationFrame(requestComponent);
-        }
-      }
-      requestComponent();
-    });
   }
 }

@@ -1,4 +1,3 @@
-let instance = null;
 export class CustomComponent extends HTMLElement {
   /**
    * Creates a new CustomComponent object to be used as an element in HTML.
@@ -30,7 +29,6 @@ export class CustomComponent extends HTMLElement {
     if (this.isConnected) {
       const templateElement = document.createElement('template');
       templateElement.innerHTML = this._template ? this._template : '';
-      console.log(templateElement.innerHTML);
       this.shadowRoot.appendChild(templateElement.content.cloneNode(true));
     }
   }

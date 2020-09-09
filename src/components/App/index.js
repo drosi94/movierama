@@ -2,7 +2,7 @@ import { CustomComponent } from '../../utilities/CustomComponent';
 
 import template from './template.html';
 
-class App extends CustomComponent {
+export class App extends CustomComponent {
   constructor() {
     super(template);
   }

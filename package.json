@@ -4,11 +4,16 @@
   "description": "",
   "main": "index.js",
   "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "html"
+    ],
     "testMatch": [
       "**/*.test.js"
     ],
     "transform": {
-      "^.+\\.(js|jsx)$": "babel-jest"
+      "^.+\\.(js|jsx)$": "babel-jest",
+      "^.+\\.html?$": "html-loader-jest"
     },
     "setupFiles": [
       "dotenv/config"
@@ -40,6 +45,7 @@
     "dotenv-webpack": "^2.0.0",
     "file-loader": "^6.1.0",
     "html-loader": "^1.3.0",
+    "html-loader-jest": "^0.2.1",
     "html-webpack-plugin": "^4.4.1",
     "http-server": "^0.12.3",
     "jest": "^26.4.2",

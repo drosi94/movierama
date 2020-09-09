@@ -17,7 +17,8 @@
 
 #### Methodologies
 
-Component-based
+<ins>Component-based<ins>
+  
 Each element (header, movie list, movie item, footer) of the web app has its own component using the [HtmlElement](https://developer.mozilla.org/en/docs/Web/API/HTMLElement) interface.
 
 <ins>MVC Pattern<ins>

@@ -92,6 +92,10 @@ module.exports = {
           from: 'manifest.json',
           to: 'manifest.json',
         },
+        {
+          from: 'robots.txt',
+          to: 'robots.txt',
+        },
       ],
     }),
     new WorkboxPlugin.GenerateSW({

@@ -6,7 +6,7 @@ const app = express();
 // the __dirname is the current directory from where the script is running
 app.use(express.static(path.resolve(__dirname, 'dist')));
 
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   if (req.secure) {
     // request was via https, so do no special handling
     next();

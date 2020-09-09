@@ -1,15 +1,16 @@
 require('dotenv').config();
 
-require('./components/App');
-require('./components/Header');
-require('./components/MovieList');
-require('./components/MovieList/MovieItem');
-require('./components/MovieList/MovieItem/MovieTrailer');
-require('./components/MovieList/MovieItem/MovieReviewList');
-require('./components/MovieList/MovieItem/MovieReviewList/MovieReviewItem');
-require('./components/MovieList/MovieItem/MovieSimilarList');
-require('./components/MovieList/MovieItem/MovieSimilarList/MovieSimilarItem');
-require('./components/Footer');
+import './Views/Components/App';
+import './Views/Components/Header';
+import './Views/Components/MovieList';
+import './Views/Components/MovieList/MovieItem';
+import './Views/Components/MovieList/MovieSkeleton';
+import './Views/Components/MovieList/MovieItem/MovieTrailer';
+import './Views/Components/MovieList/MovieItem/MovieReviewList';
+import './Views/Components/MovieList/MovieItem/MovieReviewList/MovieReviewItem';
+import './Views/Components/MovieList/MovieItem/MovieSimilarList';
+import './Views/Components/MovieList/MovieItem/MovieSimilarList/MovieSimilarItem';
+import './Views/Components/Footer';
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {

@@ -56,6 +56,11 @@ Install the npm packages
 npm install
 ```
 
+Create a .env file in the root
+```
+API_URL=https://api.themoviedb.org/3
+API_KEY=<YOUR_KEY>
+```
 
 Run the tests
 

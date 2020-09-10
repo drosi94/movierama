@@ -3,9 +3,9 @@ import { MoviesService } from '../../../../../Services/MoviesService';
 
 const tagName = 'movierama-movie-review-list';
 import template from './template.html';
-import css from '!!raw-loader!postcss-loader!./styles.css'; 
-
-class MovieReviewList extends CustomComponent {
+import css from '!!raw-loader!postcss-loader!./styles.css';
+import moviesAPICallerMock from '../../../../../../__mocks__/moviesAPICallerMock';
+export class MovieReviewList extends CustomComponent {
   constructor() {
     super(template, css);
     this._service = new MoviesService();
@@ -16,6 +16,7 @@ class MovieReviewList extends CustomComponent {
   async connectedCallback() {
     super.connectedCallback();
     if (this.isConnected) {
+      this.test();
       this.$movieReviewsContainer = this.shadowRoot.querySelector(
         '#movieReviewsContainer'
       );
@@ -33,6 +34,12 @@ class MovieReviewList extends CustomComponent {
       } else {
         this.$movieReviewsContainer.innerHTML = `<p>No reviews found</p>`;
       }
+    }
+  }
+
+  test() {
+    if (this.getAttribute('data-test')) {
+      this._service = new MoviesService(moviesAPICallerMock);
     }
   }
 }

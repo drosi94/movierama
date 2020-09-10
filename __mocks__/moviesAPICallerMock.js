@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   getGenres: async () => {
     return {
       genres: [
@@ -51,7 +51,16 @@ module.exports = {
     return [];
   },
   getMovieReviews: async () => {
-    return [];
+    return {
+      results: [
+        {
+          content: 'Test Review 1',
+        },
+        {
+          content: 'Test Review 2',
+        },
+      ],
+    };
   },
   getMovieSimilars: async () => {
     return [];

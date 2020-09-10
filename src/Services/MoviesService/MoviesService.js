@@ -1,7 +1,7 @@
 import { MoviesAPICaller } from '../apiCaller/MoviesAPICaller';
 export class MoviesService {
-  constructor() {
-    this._apiCaller = new MoviesAPICaller(process.env.API_URL);
+  constructor(mockApiCaller) {
+    this._apiCaller = mockApiCaller || new MoviesAPICaller(process.env.API_URL);
   }
 
   async initData() {

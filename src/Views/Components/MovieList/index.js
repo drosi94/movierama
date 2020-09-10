@@ -3,6 +3,7 @@ import { MoviesService } from '../../../Services/MoviesService';
 
 const tagName = 'movierama-movie-list';
 import template from './template.html';
+import css from '!!raw-loader!postcss-loader!./styles.css'; 
 
 const MOVIE_LIST_MODE = Object.freeze({
   LATEST: 'LATEST',
@@ -11,7 +12,7 @@ const MOVIE_LIST_MODE = Object.freeze({
 
 class MovieList extends CustomComponent {
   constructor() {
-    super(template);
+    super(template, css);
     this._service = new MoviesService();
     this.$searchContainer = undefined;
     this.$searchInput = undefined;
@@ -74,10 +75,12 @@ class MovieList extends CustomComponent {
         !this.$searchInput.value ||
         this.$searchInput.value.trim().length === 0
       ) {
+        this.$searchInput.style.removeProperty('width');
+        this.$searchContainer.style.removeProperty('width');
         this.$searchContainer.classList.remove('active');
       }
     });
-    const onInputListener = async (value) => {
+    const onInputListenerSearch = async (value) => {
       // Remove all listeners from moviesContainer by cloning it and replace the node
       const newMoviesContainer = this.$moviesContainer.cloneNode(false); // clone without the children
       this.$moviesContainer.parentElement.replaceChild(
@@ -99,22 +102,42 @@ class MovieList extends CustomComponent {
         this._infinityScrollFunctionality();
       }
     };
-    const debouncedInputListener = Utils.debounce(onInputListener, 500);
+    const onInputListenerResize = (value) => {
+      if (!value) {
+        value = this.$searchInput.value;
+      }
+      const inputWidth = this.$searchInput.offsetWidth;
+      const charactersWidth = value.length * 10;
+      if (charactersWidth >= inputWidth - 150) {
+        this.$searchInput.style.width =
+          this.$searchInput.offsetWidth + 80 + 'px';
+        this.$searchContainer.style.width =
+          this.$searchInput.offsetWidth + 80 + 'px';
+      }
+    };
+    const debouncedInputListener = Utils.debounce(onInputListenerSearch, 500);
     this.$searchInput.addEventListener('input', (e) => {
+      onInputListenerResize();
       debouncedInputListener(e.target.value);
     });
+
     this._searchChangeEvent.on((e) => {
       this.$searchInput.placeholder = '';
       this.$searchContainer.classList.add('active');
       this.$searchInput.value = e.detail.value;
-      onInputListener(e.detail.value);
+      setTimeout(() => {
+        onInputListenerResize(e.detail.value);
+      }, 1300);
+      onInputListenerSearch(e.detail.value);
     });
     this.$searchClearButton.addEventListener('click', () => {
       this.$searchInput.value = '';
+      this.$searchInput.style.removeProperty('width');
+      this.$searchContainer.style.removeProperty('width');
       this.$searchContainer.classList.remove('active');
       this.$searchInput.placeholder = placeholder;
       if (this._mode === MOVIE_LIST_MODE.SEARCH) {
-        onInputListener('');
+        onInputListenerSearch('');
       }
     });
   }
@@ -159,7 +182,6 @@ class MovieList extends CustomComponent {
         }
       } catch (e) {
         console.log(e);
-      } finally {
       }
     }
 

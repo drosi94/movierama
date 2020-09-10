@@ -12,15 +12,10 @@ import './Views/Components/MovieList/MovieItem/MovieSimilarList';
 import './Views/Components/MovieList/MovieItem/MovieSimilarList/MovieSimilarItem';
 import './Views/Components/Footer';
 
+import './Views/Pages/Movies';
+
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker
-      .register('/service-worker.js')
-      .then((registration) => {
-        console.log('SW registered: ', registration);
-      })
-      .catch((registrationError) => {
-        console.log('SW registration failed: ', registrationError);
-      });
+    navigator.serviceWorker.register('/service-worker.js');
   });
 }

@@ -1,0 +1,6 @@
+.movie-reviews-container {
+    height: 28.5rem;
+    padding: 2rem;
+    overflow-y: auto;
+    background-color: #252424;
+  }

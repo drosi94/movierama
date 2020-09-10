@@ -15,16 +15,10 @@ describe('App', () => {
 
   it('should render the template', async () => {
     const { shadowRoot } = await TestUtils.render('movierama-app');
-    const hasHead = shadowRoot.innerHTML.includes('head');
-    const hasHeader = shadowRoot.innerHTML.includes('movierama-header');
-    const hasMain = shadowRoot.innerHTML.includes('main');
-    const hasMovieList = shadowRoot.innerHTML.includes('movierama-movie-list');
-    const hasFooter = shadowRoot.innerHTML.includes('movierama-footer');
+    const hasMoviesPage = shadowRoot.innerHTML.includes(
+      'movierama-movies-page'
+    );
 
-    expect(hasHead).toBe(true);
-    expect(hasHeader).toBe(true);
-    expect(hasMain).toBe(true);
-    expect(hasMovieList).toBe(true);
-    expect(hasFooter).toBe(true);
+    expect(hasMoviesPage).toBe(true);
   });
 });

@@ -1,5 +1,6 @@
+import { TestUtils } from '../../../Utils/TestUtilities';
+
 import { Footer } from '.';
-import { TestUtils } from '../../../Utils/';
 import template from './template.html';
 
 let customComponent = null;

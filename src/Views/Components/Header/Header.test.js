@@ -1,6 +1,6 @@
 import { Header } from '.';
-import { TestUtils } from '../../../../Utils/TestUtilities';
 import template from './template.html';
+import { TestUtils } from '../../../Utils/TestUtilities';
 
 let customComponent = null;
 

@@ -1,0 +1,23 @@
+h5 {
+  font-size: 1.3rem;
+}
+.movie-similar-container {
+  padding: 2rem;
+  width: 320px;
+  text-align: center;
+  background-color: #252424;
+}
+
+.movie-title h5 {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.movie-title i:hover {
+  opacity: 0.7;
+}
+
+.movie-similar-container img {
+  width: 18.5rem;
+  height: 16rem;
+}

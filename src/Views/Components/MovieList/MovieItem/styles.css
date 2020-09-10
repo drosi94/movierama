@@ -1,0 +1,117 @@
+h2 {
+  font-size: 1.7rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+.movie-container {
+  padding: 2rem;
+  background-color: #252424;
+  cursor: pointer;
+  margin: 1rem 0;
+  height: 30rem;
+  transition: height 500ms ease;
+  overflow: hidden;
+}
+
+.movie-container .less-info {
+  display: flex;
+}
+
+.movie-container.expanded {
+  height: 150rem;
+}
+
+.movie-container .poster {
+  height: 15rem;
+}
+
+.movie-container .details {
+  margin-top: 3rem;
+  margin-left: 3rem;
+  font-size: 1.4rem;
+  transition: margin-top 500ms ease;
+}
+
+.movie-container .details span {
+  display: inline-block;
+  margin-top: 1rem;
+  margin-right: 2rem;
+}
+
+.movie-container .details .movie-overview {
+  display: none;
+}
+
+.movie-container .details p {
+  margin-top: 1rem;
+  width: 85%;
+}
+
+.movie-container.expanded .details {
+  margin-top: 0;
+}
+
+.movie-container .more-info {
+  visibility: hidden;
+  opacity: 0;
+  margin-top: 2rem;
+  transition: visibility 0s linear 300ms, opacity 500ms;
+}
+
+.movie-container.expanded .more-info {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity 500ms;
+}
+
+.movie-container .more-info .movie-overview-phone p {
+  padding: 1rem;
+  height: 15rem;
+  overflow-y: auto;
+}
+
+.movie-container .more-info .more-section {
+  margin-bottom: 2rem;
+}
+
+@media screen and (min-width: 380px) {
+  .movie-container .poster {
+    height: 18rem;
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .movie-container .poster {
+    height: 20rem;
+  }
+
+  .movie-container .details .movie-overview {
+    display: block;
+  }
+
+  .movie-container .more-info .movie-overview-phone {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1180px) {
+  .movie-container .poster {
+    height: 25rem;
+  }
+  .movie-container.expanded {
+    height: 100rem;
+  }
+  .movie-container .more-info {
+    display: grid;
+    grid-template-columns: 500px 1fr;
+    column-gap: 2.5rem;
+  }
+
+  .movie-container .more-info #movieSimilars {
+    grid-column: 1/-1;
+  }
+}

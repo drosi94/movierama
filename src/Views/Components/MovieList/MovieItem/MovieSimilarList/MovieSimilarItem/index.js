@@ -2,13 +2,13 @@ import { CustomComponent, EventEmitter } from '../../../../../../Utils/';
 
 import noImage from '../../../../../../../public/img/no-image.png';
 
-import template from './template.html';
-
 const tagName = 'movierama-movie-similar-item';
+import template from './template.html';
+import css from '!!raw-loader!postcss-loader!./styles.css'; 
 
 class MovieSimilarItem extends CustomComponent {
   constructor() {
-    super(template);
+    super(template, css);
     this.$movieSimilarTitle = undefined;
     this.$movieSimilarPoster = undefined;
     this.$movieSimilarLink = undefined;

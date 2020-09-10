@@ -1,13 +1,13 @@
 import { CustomComponent } from '../../../../../Utils/CustomComponent';
 import { MoviesService } from '../../../../../Services/MoviesService';
 
-import template from './template.html';
-
 const tagName = 'movierama-movie-review-list';
+import template from './template.html';
+import css from '!!raw-loader!postcss-loader!./styles.css'; 
 
 class MovieReviewList extends CustomComponent {
   constructor() {
-    super(template);
+    super(template, css);
     this._service = new MoviesService();
 
     this.$movieReviewsContainer = undefined;

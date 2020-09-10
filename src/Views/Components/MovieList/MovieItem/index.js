@@ -3,10 +3,11 @@ import noImage from '../../../../../public/img/no-image.png';
 
 const tagName = 'movierama-movie-item';
 import template from './template.html';
+import css from '!!raw-loader!postcss-loader!./styles.css';
 
 class MovieItem extends CustomComponent {
   constructor() {
-    super(template);
+    super(template, css);
     this.$movieContainer = undefined;
     this.$movieTitle = undefined;
     this.$moviePoster = undefined;
@@ -100,7 +101,7 @@ class MovieItem extends CustomComponent {
           'movierama-movie-similar-list',
           this.$movieSimilarListContainer
         );
-        this._movieExpandChangeEvent.emit('movieexpandchange', {
+        this._movieExpandChangeEvent.emit({
           expanded: true,
         });
       } else {

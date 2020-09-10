@@ -1,13 +1,18 @@
+:root {
+  --bg-color: #323232;
+  --primary-color: #316a6d;
+}
+
 html {
   box-sizing: border-box;
-  font-size: 62.5%; /* 1rem = 1.6px */
+  font-size: 62.5%;
 }
 
 body {
   font-family: 'Roboto', sans-serif;
-  font-size: 1.6rem; /* 16px */
+  font-size: 1.6rem;
   line-height: 1.5;
-  background-color: #323232;
+  background-color: var(--bg-color);
   color: #fff;
   overflow: hidden;
 }
@@ -41,7 +46,7 @@ h6 {
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   }
   *::-webkit-scrollbar-thumb {
-    background-color: #316a6d;
+    background-color: var(--primary-color);
     outline: 1px solid slategrey;
   }
 }

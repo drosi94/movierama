@@ -1,5 +1,5 @@
 import { MoviesAPICaller } from './MoviesAPICaller';
-import { HTTP_STATUS } from '../../enums/HTTP_STATUS';
+import { HTTP_STATUS } from '../enums/HTTP_STATUS';
 
 describe('MoviesAPICaller', () => {
   it('should create new instance of MoviesAPICaller', () => {

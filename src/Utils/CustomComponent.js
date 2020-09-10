@@ -35,11 +35,9 @@ export class CustomComponent extends HTMLElement {
         style.innerHTML = this._css;
         head.appendChild(style);
       }
-      const body = document.createElement('body');
       const templateElement = document.createElement('template');
       templateElement.innerHTML = this._template ? this._template : '';
-      body.appendChild(templateElement.content.cloneNode(true));
-      this.shadowRoot.appendChild(body);
+      this.shadowRoot.appendChild(templateElement.content.cloneNode(true));
     }
   }
 }

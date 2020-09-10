@@ -1,37 +1,44 @@
-## Welcome to GitHub Pages
+### Technical Details
 
-You can use the [editor on GitHub](https://github.com/drosi94/movierama/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+#### <span style="text-decoration:underline;">Technologies</span>
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+*   HTML5 / CSS3 / Javascript (ES6+)
+*   Webpack
+*   Babel
+*   Workbox (Service worker for creating PWAs)
+*   Jest
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
+#### Methodologies
 
-1. Numbered
-2. List
+<ins>Component-based<ins>
+  
+Each element (header, movie list, movie item, footer) of the web app has its own component using the [HtmlElement](https://developer.mozilla.org/en/docs/Web/API/HTMLElement) interface.
 
-**Bold** and _Italic_ and `Code` text
+<ins>MVC Pattern<ins>
 
-[Link](url) and ![Image](src)
-```
+The UI is separated from the logic and the service needed to retrieve the data, makes easier the testing of the different aspects.
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+<ins>Mobile-First Design<ins>
 
-### Jekyll Themes
+Designing the UI optimized for mobiles by the beginning resulting to have fully responsive layouts a lot easier.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/drosi94/movierama/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+<ins>PWA<ins>
 
-### Support or Contact
+Making the web app progressive adds extra functionality, like
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+*   Can be installed as an application in mobile phones.
+*   Works without an internet connection, caching HTTP requests and assets
+
+
+#### Development Environment
+
+Webpack is used as module bundler and with babel compiler, we can bundle our  application in a single .js file ready to use in a browser using the latest (supported by babel) features of Javascript. Also, we can include loaders and plugins to the webpack configuration to add extra functionality such as importing HTML/CSS files to Javascript and generating service workers.
+
+
+#### Deployment
+
+The deployment process is automated using [heroku](https://dashboard.heroku.com/). When a push occurs in the **heroku** branch a builder runs to build the application and serve it through a Node.JS (Express) server. The PWA can be accessed [here](https://vdrosatos-movierama.herokuapp.com/).

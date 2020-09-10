@@ -5,7 +5,6 @@ const tagName = 'movierama-movie-review-list';
 import template from './template.html';
 import css from '!!raw-loader!postcss-loader!./styles.css';
 import moviesAPICallerMock from '../../../../../../__mocks__/moviesAPICallerMock';
-
 export class MovieReviewList extends CustomComponent {
   constructor() {
     super(template, css);

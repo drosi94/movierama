@@ -3,7 +3,7 @@ import { MoviesService } from '../../../Services/MoviesService';
 
 const tagName = 'movierama-movie-list';
 import template from './template.html';
-import css from '!!raw-loader!postcss-loader!./styles.css'; 
+import css from '!!raw-loader!postcss-loader!./styles.css';
 
 const MOVIE_LIST_MODE = Object.freeze({
   LATEST: 'LATEST',
@@ -143,11 +143,7 @@ class MovieList extends CustomComponent {
   }
 
   _infinityScrollFunctionality() {
-    const throttledScollListener = () =>
-      Utils.throttle(onScrollListener.call(this), 50000);
-
-    this.$moviesContainer.addEventListener('scroll', throttledScollListener);
-    async function onScrollListener() {
+    const onScrollListener = async () => {
       try {
         const infoExpandedHeight = window.innerWidth > 1080 ? 1000 : 1500;
         const infoHeight = 300;
@@ -164,26 +160,21 @@ class MovieList extends CustomComponent {
           movieItems * infoHeight + expandedMovieItems * infoExpandedHeight
         ) {
           this._page++;
-          this.$moviesContainer.removeEventListener(
-            'scroll',
-            throttledScollListener
-          );
+          this.$moviesContainer.removeEventListener('scroll', onScrollListener);
           const loadingSkeleton = document.createElement(
             'movierama-movie-skeleton'
           );
           this.$moviesContainer.appendChild(loadingSkeleton);
           const data = await this._populateMovies(false, loadingSkeleton);
           if (data.total_pages > this._page) {
-            this.$moviesContainer.addEventListener(
-              'scroll',
-              throttledScollListener
-            );
+            this.$moviesContainer.addEventListener('scroll', onScrollListener);
           }
         }
       } catch (e) {
         console.log(e);
       }
-    }
+    };
+    this.$moviesContainer.addEventListener('scroll', onScrollListener);
 
     this._movieExpandChangeEvent.on((e) => {
       if (!e.detail.expanded) {
